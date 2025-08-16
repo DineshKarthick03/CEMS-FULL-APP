@@ -17,14 +17,15 @@ const AdminEventsPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [showAddOverlay, setShowAddOverlay] = useState(false);
   const [selectedEventParticipants, setSelectedEventParticipants] = useState(null);
+  const API_BASE_URL = "https://cems-backend.onrender.com";
 
   // Fetch Events by type (upcoming/past)
   const fetchEvents = async () => {
     try {
       const endpoint =
         filterType === "upcoming"
-          ? `http://localhost:8000/api/v1/event/upcoming?page=${page}&limit=6`
-          : `http://localhost:8000/api/v1/event/past?page=${page}&limit=6`;
+          ? `${API_BASE_URL}/api/v1/event/upcoming?page=${page}&limit=6`
+          : `${API_BASE_URL}/api/v1/event/past?page=${page}&limit=6`;
 
       const { data } = await axios.get(endpoint, { withCredentials: true });
 
@@ -60,7 +61,7 @@ const AdminEventsPage = () => {
       }
 
       try {
-        const endpoint = `http://localhost:8000/api/v1/event/search?name=${encodeURIComponent(
+        const endpoint = `${API_BASE_URL}/api/v1/event/search?name=${encodeURIComponent(
           searchQuery
         )}`;
         const { data } = await axios.get(endpoint, { withCredentials: true });

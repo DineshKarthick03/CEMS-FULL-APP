@@ -20,12 +20,13 @@ const EventsPage = () => {
   const [filterType, setFilterType] = useState("upcoming");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const endpoint = filterType === "upcoming"
-          ? `http://localhost:8000/api/v1/event/upcoming?page=${page}&limit=6`
-          : `http://localhost:8000/api/v1/event/past?page=${page}&limit=6`;
+          ? `${API_BASE_URL}/api/v1/event/upcoming?page=${page}&limit=6`
+          : `${API_BASE_URL}/api/v1/event/past?page=${page}&limit=6`;
 
         const { data } = await axios.get(endpoint, {
           withCredentials: true,
@@ -62,7 +63,7 @@ const EventsPage = () => {
       }
 
       try {
-        const endpoint = `http://localhost:8000/api/v1/event/search?name=${encodeURIComponent(searchQuery)}`;
+        const endpoint = `${API_BASE_URL}api/v1/event/search?name=${encodeURIComponent(searchQuery)}`;
         const { data } = await axios.get(endpoint, {
           withCredentials: true,
         });

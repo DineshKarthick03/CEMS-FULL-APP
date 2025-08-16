@@ -12,7 +12,7 @@ const AddEventOverlay = ({ onClose, onEventAdded }) => {
     coordinators: "",
     maxParticipants: ""
   });
-
+  //const API_BASE_URL = "https://cems-backend.onrender.com";
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -23,7 +23,7 @@ const AddEventOverlay = ({ onClose, onEventAdded }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/event",
+        "https://cems-backend.onrender.com/api/v1/event",
         formData,
         { withCredentials: true }
       );

@@ -34,7 +34,7 @@ const RegistrationOverlay = ({ event, onClose }) => {
 
     try {
       const { data } = await axios.post(
-        `http://localhost:8000/api/v1/event/${event._id}/register`,
+        `https://cems-backend.onrender.com/api/v1/event/${event._id}/register`,
         {
           name,
           email,
