@@ -12,10 +12,13 @@ import { protectRoute } from './middleware/protectRoute.js';
 dotenv.config();
 const app=express();
 const PORT=ENV_VARS.PORT
-app.use(cors({
-      origin:[ 'http://localhost:5173',"https://cems-frontend.vercel.app"],
-  credentials: true
-}))
+app.use(
+  cors({
+    origin: ["https://cems-full-app.vercel.app","http://localhost:5173"], // frontend URL
+    methods: ["GET","POST","PUT","DELETE"],
+    credentials: true // if you use cookies
+  })
+);
 console.log(process.env.MONGO_URI);
 
 app.use(express.json());
