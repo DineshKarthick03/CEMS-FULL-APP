@@ -23,7 +23,7 @@ const AddEventOverlay = ({ onClose, onEventAdded }) => {
 
     try {
       const response = await axios.post(
-        "https://cems-backend.onrender.com/api/v1/event",
+        "https://cems-full-app.onrender.com/api/v1/event",
         formData,
         { withCredentials: true }
       );

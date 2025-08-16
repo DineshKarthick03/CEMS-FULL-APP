@@ -17,7 +17,7 @@ const AdminEventsPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [showAddOverlay, setShowAddOverlay] = useState(false);
   const [selectedEventParticipants, setSelectedEventParticipants] = useState(null);
-  const API_BASE_URL = "https://cems-backend.onrender.com";
+  const API_BASE_URL = "https://cems-full-app.onrender.com";
 
   // Fetch Events by type (upcoming/past)
   const fetchEvents = async () => {

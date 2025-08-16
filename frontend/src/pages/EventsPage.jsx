@@ -20,7 +20,7 @@ const EventsPage = () => {
   const [filterType, setFilterType] = useState("upcoming");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const API_BASE_URL = "https://cems-backend.onrender.com";
+  const API_BASE_URL = "https://cems-full-app.onrender.com";
   useEffect(() => {
     const fetchEvents = async () => {
       try {
