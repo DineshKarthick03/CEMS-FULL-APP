@@ -12,7 +12,7 @@ const AddEventOverlay = ({ onClose, onEventAdded }) => {
     coordinators: "",
     maxParticipants: ""
   });
-  //const API_BASE_URL = "https://cems-backend.onrender.com";
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -23,9 +23,18 @@ const AddEventOverlay = ({ onClose, onEventAdded }) => {
 
     try {
       const token = localStorage.getItem("token");
+
+      // Prepare payload
+      const payload = {
+        ...formData,
+        maxParticipants: Number(formData.maxParticipants),
+        date: new Date(formData.date).toISOString(),
+        deadline: formData.deadline ? new Date(formData.deadline).toISOString() : undefined
+      };
+
       const response = await axios.post(
         "https://cems-full-app.onrender.com/api/v1/event",
-        formData,
+        payload,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
