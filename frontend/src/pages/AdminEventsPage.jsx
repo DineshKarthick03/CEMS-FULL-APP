@@ -26,8 +26,8 @@ const AdminEventsPage = () => {
         filterType === "upcoming"
           ? `${API_BASE_URL}/api/v1/event/upcoming?page=${page}&limit=6`
           : `${API_BASE_URL}/api/v1/event/past?page=${page}&limit=6`;
-
-      const { data } = await axios.get(endpoint, { withCredentials: true });
+      const token = localStorage.getItem("token");
+      const { data } = await axios.get(endpoint,{ headers: { Authorization: `Bearer ${token}` },});
 
       if (data?.events && Array.isArray(data.events)) {
         setEvents(data.events);
@@ -64,7 +64,8 @@ const AdminEventsPage = () => {
         const endpoint = `${API_BASE_URL}/api/v1/event/search?name=${encodeURIComponent(
           searchQuery
         )}`;
-        const { data } = await axios.get(endpoint, { withCredentials: true });
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get(endpoint, {headers: { Authorization: `Bearer ${token}` },});
 
         if (data?.event && Array.isArray(data.event)) {
           const now = new Date();

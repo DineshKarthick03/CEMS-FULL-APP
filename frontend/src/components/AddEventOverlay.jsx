@@ -22,10 +22,13 @@ const AddEventOverlay = ({ onClose, onEventAdded }) => {
     e.preventDefault();
 
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.post(
         "https://cems-full-app.onrender.com/api/v1/event",
         formData,
-        { withCredentials: true }
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
       );
 
       toast.success("Event created successfully");

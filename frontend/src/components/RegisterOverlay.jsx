@@ -33,6 +33,7 @@ const RegistrationOverlay = ({ event, onClose }) => {
     }
 
     try {
+      const token = localStorage.getItem("token");
       const { data } = await axios.post(
         `https://cems-full-app.onrender.com/api/v1/event/${event._id}/register`,
         {
@@ -42,7 +43,9 @@ const RegistrationOverlay = ({ event, onClose }) => {
           department,
           year,
         },
-        { withCredentials: true }
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
       setSuccess(data.message);

@@ -39,7 +39,7 @@ export async function signup(req,res)
 			username,
 		});
         await newUser.save();
-		generateTokenAndSetCookie(newUser,res);
+		const token=generateTokenAndSetCookie(newUser,res);
 		
         res.status(201).json({
 			success: true,
@@ -48,7 +48,7 @@ export async function signup(req,res)
         email: newUser.email,
         username: newUser.username,
         role: newUser.role,
-      },
+      },token
 		});
     } catch (error) {
         console.log("Error in signup controller", error);
@@ -75,14 +75,14 @@ export async function login(req,res)
 		if (!isPasswordCorrect) {
 			return res.status(400).json({ success: false, message: "Invalid credentials" });
 		}
-        generateTokenAndSetCookie(user,res);
+        const token=generateTokenAndSetCookie(user,res);
 
 		res.status(200).json({
 			success: true,
 			user: {
 				...user._doc,
 				password: "",
-			},
+			},token
 		});
     } catch (error) {
         console.log("Error in login controller", error.message);

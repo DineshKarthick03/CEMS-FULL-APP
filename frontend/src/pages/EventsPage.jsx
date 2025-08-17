@@ -27,9 +27,10 @@ const EventsPage = () => {
         const endpoint = filterType === "upcoming"
           ? `${API_BASE_URL}/api/v1/event/upcoming?page=${page}&limit=6`
           : `${API_BASE_URL}/api/v1/event/past?page=${page}&limit=6`;
-
+        const token = localStorage.getItem("token");  
         const { data } = await axios.get(endpoint, {
-          withCredentials: true,
+          //withCredentials: true,
+           headers: { Authorization: `Bearer ${token}` },
         });
 
         //  Defensive check
@@ -63,9 +64,11 @@ const EventsPage = () => {
       }
 
       try {
-        const endpoint = `${API_BASE_URL}api/v1/event/search?name=${encodeURIComponent(searchQuery)}`;
+        const endpoint = `${API_BASE_URL}/api/v1/event/search?name=${encodeURIComponent(searchQuery)}`;
+        const token = localStorage.getItem("token");
         const { data } = await axios.get(endpoint, {
-          withCredentials: true,
+          //withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
         });
         console.log("Search response:", data);
 
