@@ -29,7 +29,8 @@ const AddEventOverlay = ({ onClose, onEventAdded }) => {
         ...formData,
         maxParticipants: Number(formData.maxParticipants),
         date: new Date(formData.date).toISOString(),
-        deadline: formData.deadline ? new Date(formData.deadline).toISOString() : undefined
+        deadline: formData.deadline ? new Date(formData.deadline).toISOString() : undefined,
+        coordinators: [formData.coordinators]
       };
 
       const response = await axios.post(
