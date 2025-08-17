@@ -94,6 +94,7 @@ export async function registerForEvent(req, res) {
 
 export async function createEvent(req, res) {
     try {
+        console.log("Creating event with data:", req.body);
         const { name, description, date, deadline, coordinators, location, maxParticipants } = req.body;
         if (!name || !description || !date || !coordinators || !location || !maxParticipants) {
             return res.status(400).json({ success: false, message: "All fields are required" });
@@ -113,6 +114,7 @@ export async function createEvent(req, res) {
         await newEvent.save();
         res.status(201).json({ success: true, message: "Event created successfully", event: newEvent });
     } catch (error) {
+        console.error("Error in createEvent controller:", error);
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 }
