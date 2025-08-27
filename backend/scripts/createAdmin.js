@@ -8,12 +8,12 @@ import User from "../models/user.model.js";
 await connectDB();
 
 async function createAdminIfNotExists() {
-  const existingAdmin = await User.findOne({ email: "admin@rmd.ac.in" });
+  const existingAdmin = await User.findOne({ email: "admin@gmail.com" });
   if (!existingAdmin) {
     const hashedPassword = await bcrypt.hash("admin@123", 10);
     const adminUser = new User({
       username: "admin",
-      email: "admin@rmd.ac.in",
+      email: "admin@gmail.com",
       password: hashedPassword,
       role: "admin",
     });

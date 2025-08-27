@@ -10,7 +10,7 @@ export async function signup(req,res)
          if (!email || !password || !username) {
 			return res.status(400).json({ success: false, message: "All fields are required" });
 		}
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@rmd\.ac\.in$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
         if (!emailRegex.test(email)) {
 			return res.status(400).json({ success: false, message: "Invalid email" });
 		}
