@@ -2,6 +2,7 @@
 
 A full-stack **MERN application** for managing campus events and competitions.  
 The system supports both **student users** and an **admin**, providing role-based features for event registration and event management.
+Deployed link: https://cems-full-app.vercel.app/
 
 ---
 
